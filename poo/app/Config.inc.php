@@ -10,10 +10,10 @@ define("SITENOME", "");
 define("DESCRICAO", "");
 
 //CONFIGURAÇÕES DO BANCO DE DADOS
-define("HOST", "10.92.200.116");
-define("USER", "sist_user_curriculo");
-define("PASS", "Us34@sis_curr1cul0");
-define("DBSA", "site_sist_curriculo");
+define("HOST", "localhost");
+define("USER", "root");
+define("PASS", "");
+define("DBSA", "sig");
 
 //SERVIDOR DE E-MAIL
 define("MAILUSER", "");
@@ -29,15 +29,20 @@ define("EMAILVENDAS", "");
 
 // URL AMIGAVEL  ############################################################
 $atual = (isset($_GET['pg'])) ? $_GET['pg'] : 'home';
+$busca = (isset($_GET['pg'])) ? $_GET['pg'] : 'busca';
 $permissao = array(
     'home', '404', 'sair', 'recupera_senha', 'newsletter','busca','captcha','validar',
 );
 $pasta = '';
-if (substr_count($atual, '/') > 0) {
+if (substr_count($atual, '/') > 1) {
     $atual = explode('/', $atual);
     $pagina = (file_exists($atual[0] . '.php') && in_array($atual[0], $permissao)) ? $atual[0] : '404';
+    //echo $pagina;
+    //echo "IF ok";
 } else {
     $pagina = (file_exists($atual . '.php') && in_array($atual, $permissao)) ? $atual : '404';
+    //echo $pagina;
+    //echo "IF nao ok";
 }
 
 // AUTO LOAD DE CLASSES  ############################################################
